@@ -12,19 +12,19 @@ const auth = (req, res, next) => {
   const token = tokenExtractor(req);
   const decodedToken = jwt.decode(token);
   if (!token || !decodedToken) {
-    return res.status(401).json({ error: "missing or invalid token" });
+    return res.status(401).json({ error: "Missing or invalid token" });
   }
   req.token = decodedToken;
   next();
 };
 
 const unknownError = (req, res, next) => {
-  res.status(404).send({ error: "unknown endpoint" });
+  res.status(404).send({ error: "Unknown endpoint" });
   next();
 };
 
 const handleErrors = (error, req, res, next) => {
-  console.log(error);
+  // console.log(error);
   if (error.name === "ValidationError") {
     return res.status(400).send({
       error: error.message,

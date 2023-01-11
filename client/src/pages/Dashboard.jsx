@@ -57,7 +57,7 @@ export const Dashboard = () => {
       </HStack>
       <VStack alignItems="start" w="100%">
         <HStack justifyContent="space-between" w="100%" my="10px">
-          <Heading>Hello, {user ? user.username : "nobody"}</Heading>
+          <Heading>Hello,{user ? user.username : "nobody"}</Heading>
           {user && user.isAdmin ? (
             <Button onClick={() => navigate("/users")}>Users</Button>
           ) : (

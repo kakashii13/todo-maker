@@ -15,22 +15,20 @@ import { Link } from "react-router-dom";
 
 export const Signup = () => {
   const { saveUser } = useTodoContext();
-  const [user, setUser] = useState({
-    username: "",
-    email: "",
-    password: "",
-  });
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [pass, setPass] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
   const handleUsername = (target) => {
-    setUser({ ...user, username: target.value });
+    setUsername(target.value);
   };
   const handleEmail = (target) => {
-    setUser({ ...user, email: target.value });
+    setEmail(target.value);
   };
   const handlePassword = (target) => {
-    setUser({ ...user, password: target.value });
+    setPass(target.value);
   };
 
   const saveToLocal = (user) => {
@@ -40,8 +38,10 @@ export const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!username || !email || !pass)
+      return setErrorMessage("Complete all fields");
     try {
-      const dbUser = await signup(user);
+      const dbUser = await signup({ username, email, pass });
       saveUser(dbUser);
       saveToken(dbUser.token);
       saveToLocal(dbUser);
@@ -60,21 +60,21 @@ export const Signup = () => {
             <Input
               type="text"
               placeholder="username"
-              value={user.username}
+              value={username}
               onChange={({ target }) => handleUsername(target)}
               maxW="300px"
             />
             <Input
               type="email"
               placeholder="email"
-              value={user.email}
+              value={email}
               onChange={({ target }) => handleEmail(target)}
               maxW="300px"
             />
             <Input
               type="password"
               placeholder="password"
-              value={user.password}
+              value={pass}
               onChange={({ target }) => handlePassword(target)}
               maxW="300px"
             />

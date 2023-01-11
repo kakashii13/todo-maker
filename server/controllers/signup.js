@@ -7,6 +7,9 @@ const jwt = require("jsonwebtoken");
 signRouter.post("/", async (req, res) => {
   const { username, email, password } = req.body;
   const hashPassword = await bcrypt.hash(password, 10);
+  if (!username || !email || !password) {
+    return res.status(400).send("Complete all fields");
+  }
   const user = new User({
     username,
     email,
