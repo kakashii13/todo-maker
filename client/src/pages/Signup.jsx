@@ -17,7 +17,7 @@ export const Signup = () => {
   const { saveUser } = useTodoContext();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
-  const [pass, setPass] = useState("");
+  const [password, setPass] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
@@ -38,10 +38,10 @@ export const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!username || !email || !pass)
+    if (!username || !email || !password)
       return setErrorMessage("Complete all fields");
     try {
-      const dbUser = await signup({ username, email, pass });
+      const dbUser = await signup({ username, email, password });
       saveUser(dbUser);
       saveToken(dbUser.token);
       saveToLocal(dbUser);
@@ -74,7 +74,7 @@ export const Signup = () => {
             <Input
               type="password"
               placeholder="password"
-              value={pass}
+              value={password}
               onChange={({ target }) => handlePassword(target)}
               maxW="300px"
             />

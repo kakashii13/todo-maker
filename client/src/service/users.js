@@ -1,7 +1,7 @@
 import axios from "axios";
 import { token } from "./token";
 
-const baseUrl = "http://localhost:3000";
+const baseUrl = import.meta.env.VITE_URL_BASE;
 
 export const getAll = async () => {
   const config = {
