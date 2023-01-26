@@ -5,6 +5,7 @@ import {
   HStack,
   Icon,
   List,
+  Spinner,
   useColorMode,
   VStack,
 } from "@chakra-ui/react";
@@ -48,33 +49,41 @@ export const Dashboard = () => {
 
   return (
     <VStack>
-      <HStack justifyContent="end" w="100%">
-        <Icon as={RiLogoutCircleLine} onClick={logout} />
-        <Icon
-          onClick={toggleColorMode}
-          as={colorMode === "light" ? BsFillMoonFill : BsSunFill}
-        />
-      </HStack>
-      <VStack alignItems="start" w="100%">
-        <HStack justifyContent="space-between" w="100%" my="10px">
-          <Heading>Hello,{user ? user.username : "nobody"}</Heading>
-          {user && user.isAdmin ? (
-            <Button onClick={() => navigate("/users")}>Users</Button>
-          ) : (
-            ""
-          )}
-        </HStack>
-        <CreateTodo handleTodos={handleTodos} />
-        <List w="100%">
-          {todos.map((todo) => (
-            <Todo
-              todo={todo}
-              key={todo.id}
-              deleteTodoFromTodos={deleteTodoFromTodos}
+      {!user ? (
+        <VStack>
+          <Spinner />
+        </VStack>
+      ) : (
+        <VStack w="100%">
+          <HStack justifyContent="end" w="100%">
+            <Icon as={RiLogoutCircleLine} onClick={logout} />
+            <Icon
+              onClick={toggleColorMode}
+              as={colorMode === "light" ? BsFillMoonFill : BsSunFill}
             />
-          ))}
-        </List>
-      </VStack>
+          </HStack>
+          <VStack alignItems="start" w="100%">
+            <HStack justifyContent="space-between" w="100%" my="10px">
+              <Heading>Hello,{user ? user.username : "nobody"}</Heading>
+              {user && user.isAdmin ? (
+                <Button onClick={() => navigate("/users")}>Users</Button>
+              ) : (
+                ""
+              )}
+            </HStack>
+            <CreateTodo handleTodos={handleTodos} />
+            <List w="100%">
+              {todos.map((todo) => (
+                <Todo
+                  todo={todo}
+                  key={todo.id}
+                  deleteTodoFromTodos={deleteTodoFromTodos}
+                />
+              ))}
+            </List>
+          </VStack>
+        </VStack>
+      )}
     </VStack>
   );
 };
