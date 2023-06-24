@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { login } from "../service/login";
 import { useTodoContext } from "../context/TodoContext";
 import { saveToken } from "../service/token";
+import { Link } from "react-router-dom";
 
 export const Login = () => {
   const { saveUser } = useTodoContext();
@@ -27,6 +28,7 @@ export const Login = () => {
     setUserPass(target.value);
   };
 
+  // save to local storage user data
   const saveToLocal = (user) => {
     const userLocal = JSON.stringify(user);
     localStorage.setItem("todoMakerLogged", userLocal);
@@ -66,10 +68,16 @@ export const Login = () => {
               onChange={({ target }) => handlePassword(target)}
               maxW="300px"
             />
-            <Button type="submit" w="100%" colorScheme="purple" my="10px">
+            <Button type="submit" w="100%" colorScheme="primary" my="10px">
               Login
             </Button>
             {errorMessage ? <Text color="red.500">{errorMessage}</Text> : ""}
+            <VStack spacing="0">
+              <Text>New to TodoMaker?</Text>
+              <Link to="/signup">
+                <Text color="blue.500">Create an account.</Text>
+              </Link>
+            </VStack>
           </VStack>
         </FormControl>
       </form>

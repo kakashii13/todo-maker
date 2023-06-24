@@ -33,7 +33,7 @@ export const Todo = ({ todo, deleteTodoFromTodos }) => {
     >
       <HStack spacing={5}>
         <Checkbox
-          colorScheme="purple"
+          colorScheme="primary"
           defaultChecked={todo.complete ? true : false}
           onChange={handleUpdate}
         />

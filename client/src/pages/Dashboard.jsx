@@ -25,6 +25,7 @@ export const Dashboard = () => {
 
   const navigate = useNavigate();
 
+  // get all todos from DB
   useEffect(() => {
     const getTodos = async () => {
       const todos = await getAll();
@@ -33,10 +34,12 @@ export const Dashboard = () => {
     getTodos();
   }, [user]);
 
+  // add new TODOS to TODOS state
   const handleTodos = (todo) => {
     setTodos([...todos, todo]);
   };
 
+  // remove TODO from TODOS state
   const deleteTodoFromTodos = (id) => {
     const todosFiltered = todos.filter((t) => t.id != id);
     setTodos(todosFiltered);

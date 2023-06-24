@@ -15,7 +15,7 @@ export const DefaultTodo = ({ text }) => {
       bg={colorMode === "light" ? "white" : "gray.700"}
     >
       <HStack spacing={5}>
-        <Checkbox colorScheme="purple" />
+        <Checkbox colorScheme="primary" />
         <Text>{text}</Text>
       </HStack>
       <Icon as={AiTwotoneDelete} />

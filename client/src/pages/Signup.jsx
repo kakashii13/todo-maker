@@ -31,6 +31,7 @@ export const Signup = () => {
     setPass(target.value);
   };
 
+  // save user data in LocalStorage
   const saveToLocal = (user) => {
     const userLocal = JSON.stringify(user);
     localStorage.setItem("todoMakerLogged", userLocal);
@@ -78,20 +79,16 @@ export const Signup = () => {
               onChange={({ target }) => handlePassword(target)}
               maxW="300px"
             />
-            <Button type="submit" minW="300px" colorScheme="purple" my="10px">
+            <Button type="submit" minW="300px" colorScheme="primary" my="10px">
               Signup
             </Button>
-            <Text>You have already an account?</Text>
-            <Link to="/login">
-              <Text color="blue.500">Login</Text>
-            </Link>
-            {errorMessage ? (
-              <Text textAlign="center" color="red.500">
-                {errorMessage}
-              </Text>
-            ) : (
-              ""
-            )}
+            {errorMessage ? <Text color="red.500">{errorMessage}</Text> : ""}
+            <VStack spacing="0">
+              <Text>You have already an account?</Text>
+              <Link to="/login">
+                <Text color="blue.500">Login</Text>
+              </Link>
+            </VStack>
           </VStack>
         </FormControl>
       </form>

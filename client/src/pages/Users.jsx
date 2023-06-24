@@ -13,6 +13,7 @@ export const Users = () => {
 
   const navigate = useNavigate();
 
+  // get users from DB
   useEffect(() => {
     if (user && !user.isAdmin && !user.token) return;
     const getUsers = async () => {
@@ -22,6 +23,7 @@ export const Users = () => {
     getUsers();
   }, [user]);
 
+  // delete an user from DB
   const handleDelete = async (id) => {
     createAlert("User removed", "error");
     const usersFiltered = users.filter((u) => u.id !== id);

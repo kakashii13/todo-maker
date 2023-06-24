@@ -9,8 +9,12 @@ const tokenExtractor = (req) => {
 };
 
 const auth = (req, res, next) => {
+  // send token data through function to extract token
   const token = tokenExtractor(req);
+
   const decodedToken = jwt.decode(token);
+
+  // validate if exist token or if is correct
   if (!token || !decodedToken) {
     return res.status(401).json({ error: "Missing or invalid token" });
   }

@@ -25,16 +25,11 @@ export const Home = () => {
         </Heading>
         <VStack w="100%" spacing={6}>
           <Link to="/signup">
-            <Button colorScheme="purple">Start for free</Button>
+            <Button colorScheme="primary">Start for free</Button>
           </Link>
-          <Input
-            focusBorderColor="purple.200"
-            placeholder="Make a todo 😀"
-            boxShadow="base"
-            isReadOnly
-          />
+          <Input placeholder="Make a todo 😀" boxShadow="base" isReadOnly />
           <DefaultTodo text="Make homework" />
-          <DefaultTodo text="BuyCoffe" />
+          <DefaultTodo text="Buy Coffe" />
         </VStack>
       </VStack>
     </VStack>

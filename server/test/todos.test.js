@@ -1,3 +1,4 @@
+require("dotenv").config();
 const app = require("../app");
 const Todo = require("../models/todo");
 const supertest = require("supertest");
@@ -19,16 +20,16 @@ describe("init without todos", () => {
     await api.post("/api/todos").send(todo).expect(201);
   });
   it("delete todo", async () => {
-    const id = "6379062ba6373dac3d94b2a1";
+    const id = process.env.ID_TODO_TEST;
 
     await api.delete(`/api/todos/${id}`).expect(204);
   });
   it("updated todo", async () => {
     const todo = {
-      todo: " test desde test",
+      todo: process.env.TEXT_TODO_TEST,
       complete: true,
     };
-    const id = "6379062ba6373dac3d94b2a1";
+    const id = process.env.ID_TODO_TEST;
     await api.put(`/api/todos/${id}`).send(todo).expect(200);
   });
 });
